@@ -1,22 +1,27 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routers import products, predict, eoq
-from .routers import products, predict, eoq, auth
-from .database import engine
+
+from .database import engine, SessionLocal
 from . import models
+from .auth import create_default_users
+from .routers import auth, products, predict, eoq
 
 app = FastAPI(title="Smart Inventory Forecaster")
 
 models.Base.metadata.create_all(bind=engine)
 
+db = SessionLocal()
+create_default_users(db)
+db.close()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 app.include_router(auth.router)
 app.include_router(products.router)
 app.include_router(predict.router)
