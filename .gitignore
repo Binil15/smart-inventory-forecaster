@@ -1,0 +1,50 @@
+# ===============================
+# GLOBAL
+# ===============================
+.DS_Store
+Thumbs.db
+
+# ===============================
+# NODE / REACT (Frontend)
+# ===============================
+node_modules/
+frontend/node_modules/
+
+# React build output
+frontend/build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ===============================
+# PYTHON / FASTAPI (Backend)
+# ===============================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+backend/venv/
+.env
+backend/.env
+
+# ===============================
+# DATABASE / LOCAL FILES
+# ===============================
+*.sqlite3
+*.db
+
+# ===============================
+# IDE / EDITOR
+# ===============================
+.vscode/
+.idea/
+
+# ===============================
+# ENVIRONMENT
+# ===============================
+.env.*
