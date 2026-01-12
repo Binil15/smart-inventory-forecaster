@@ -5,20 +5,19 @@ from .database import engine, SessionLocal
 from . import models
 from .auth import create_default_users
 from .routers import auth, products, predict, eoq
-import os
 
 app = FastAPI(title="Smart Inventory Forecaster")
 
+
 models.Base.metadata.create_all(bind=engine)
 
-if os.getenv("ENV") != "production":
-    from app.auth import create_default_users
-    from app.database import SessionLocal
-
+@app.on_event("startup")
+def startup_event():
     db = SessionLocal()
-    create_default_users(db)
-    db.close()
-
+    try:
+        create_default_users(db)
+    finally:
+        db.close()
 
 app.add_middleware(
     CORSMiddleware,
