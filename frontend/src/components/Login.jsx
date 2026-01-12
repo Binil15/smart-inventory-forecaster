@@ -21,8 +21,14 @@ export default function Login({ onLogin }) {
     setError("");
     setLoading(true);
     
+    const apiBaseURL = process.env.REACT_APP_API_URL || "https://smart-inventory-forecaster.onrender.com/api";
+    console.log("=== LOGIN DEBUG INFO ===");
+    console.log("Current Origin:", window.location.origin);
+    console.log("API Base URL:", apiBaseURL);
+    console.log("Full Login URL:", `${apiBaseURL}/auth/login`);
+    console.log("=========================");
+    
     try {
-      console.log("Attempting login to:", process.env.REACT_APP_API_URL || "https://smart-inventory-forecaster.onrender.com/api");
       const res = await api.post("/auth/login", { username, password });
       localStorage.setItem("token", res.data.access_token);
       localStorage.setItem("role", res.data.role);
@@ -74,6 +80,8 @@ export default function Login({ onLogin }) {
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            required
+            autoComplete="username"
           />
 
           <input
@@ -82,6 +90,8 @@ export default function Login({ onLogin }) {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
+            autoComplete="current-password"
           />
 
           <button className="login-btn" type="submit" disabled={loading}>
