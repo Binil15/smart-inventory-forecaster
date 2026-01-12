@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://smart-inventory-forecaster.onrender.com/",
+  baseURL: "https://smart-inventory-forecaster.onrender.com/api",
 });
 
 api.interceptors.request.use((config) => {
