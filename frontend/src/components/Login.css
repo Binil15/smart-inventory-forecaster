@@ -45,6 +45,11 @@
   opacity: 0.8;
 }
 
+form {
+  margin: 0;
+  padding: 0;
+}
+
 .login-input {
   width: 100%;
   padding: 10px 14px;
