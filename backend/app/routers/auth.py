@@ -1,19 +1,15 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from jose import jwt
-from ..database import SessionLocal
+
+from ..database import get_db
 from ..models import User
 from ..schemas import UserLogin
 from ..auth import verify_password, create_access_token
 
-router = APIRouter(prefix="/api/auth", tags=["Auth"])
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+router = APIRouter(
+    prefix="/api/auth",
+    tags=["Authentication"]
+)
 
 @router.post("/login")
 def login(user: UserLogin, db: Session = Depends(get_db)):
@@ -31,4 +27,31 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
         "access_token": token,
         "token_type": "bearer",
         "role": db_user.role
+    }
+@router.post("/seed")
+def seed_users(db: Session = Depends(get_db)):
+    users = [
+        ("admin", "admin123", "admin"),
+        ("clerk", "clerk123", "clerk")
+    ]
+
+    created = []
+
+    for username, password, role in users:
+        existing = db.query(User).filter(User.username == username).first()
+        if not existing:
+            hashed = get_password_hash(password)
+            user = User(
+                username=username,
+                hashed_password=hashed,
+                role=role
+            )
+            db.add(user)
+            created.append(username)
+
+    db.commit()
+
+    return {
+        "message": "Users seeded successfully",
+        "created": created
     }
