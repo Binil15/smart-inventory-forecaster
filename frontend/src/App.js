@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Login from "./components/Login";
 import AddProductForm from "./components/AddProductForm";
 import InventoryTable from "./components/InventoryTable";
@@ -7,7 +7,17 @@ import EOQCalculator from "./components/EOQCalculator";
 import "./Dashboard.css";
 
 function App() {
-  const [role, setRole] = useState(null);
+  const [role, setRole] = useState(localStorage.getItem("role"));
+
+  useEffect(() => {
+    if (role) {
+      document.body.style.backgroundImage =
+        `url(${process.env.PUBLIC_URL}/dashboard-bg.jpg)`;
+    } else {
+      document.body.style.backgroundImage =
+        `url(${process.env.PUBLIC_URL}/login-bg.jpg)`;
+    }
+  }, [role]);
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -17,13 +27,6 @@ function App() {
 
   if (!role) {
     return <Login onLogin={(r) => setRole(r)} />;
-  if (role) {
-  document.body.style.backgroundImage =
-    `url(${process.env.PUBLIC_URL}/dashboard-bg.jpg)`;
-} else {
-  document.body.style.backgroundImage =
-    `url(${process.env.PUBLIC_URL}/login-bg.jpg)`;
-}
   }
 
   return (
