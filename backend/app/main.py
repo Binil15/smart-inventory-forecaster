@@ -7,7 +7,9 @@ from .routers import auth, products, predict, eoq
 
 app = FastAPI(title="Smart Inventory Forecaster")
 
+
 models.Base.metadata.create_all(bind=engine)
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -16,9 +18,10 @@ app.add_middleware(
         "http://localhost:3000",
     ],
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"],   
+    allow_headers=["*"],   
 )
+
 
 app.include_router(auth.router)
 app.include_router(products.router)
