@@ -48,11 +48,10 @@ export default function ForecastCard() {
 
     setResult(predicted);
 
-    /* 🔹 Prepare chart data */
     const formatted = sales.map((value, index) => ({
       month: index + 1,
       sales: value,
-      sma: predicted, // same SMA value shown across
+      sma: predicted, 
     }));
 
     setChartData(formatted);
@@ -60,7 +59,6 @@ export default function ForecastCard() {
 
   return (
     <>
-      {/* PRODUCT SELECT */}
       <select
         className="gradient-input"
         value={selectedProductId}
@@ -74,7 +72,6 @@ export default function ForecastCard() {
         ))}
       </select>
 
-      {/* SALES DISPLAY */}
       {sales.length > 0 && (
         <p style={{ fontSize: "13px", marginBottom: "8px" }}>
           Monthly Sales: <b>{sales.join(", ")}</b>
@@ -85,14 +82,12 @@ export default function ForecastCard() {
         Predict Demand
       </button>
 
-      {/* SMA OUTPUT */}
       {result !== null && (
         <p style={{ marginTop: "10px", fontWeight: "bold" }}>
           Predicted Demand (SMA): {result}
         </p>
       )}
 
-      {/* 🔹 SMA VISUALIZATION */}
       {chartData.length > 0 && (
         <div style={{ width: "100%", height: 180, marginTop: 14 }}>
           <ResponsiveContainer>

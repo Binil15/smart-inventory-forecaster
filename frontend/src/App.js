@@ -31,7 +31,6 @@ function App() {
 
   return (
   <>
-    {/* 🔹 FIXED BACKGROUND LAYER */}
     <div
       style={{
         position: "fixed",
@@ -46,8 +45,6 @@ function App() {
         zIndex: -1,
       }}
     />
-
-    {/* 🔹 SCROLLABLE CONTENT LAYER */}
     <div className="dashboard-scroll">
       <div className="dashboard">
         <div className="dashboard-header">

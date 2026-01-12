@@ -217,6 +217,8 @@ A key challenge was implementing **JWT-based authentication with role-based acce
 
 Another challenge was synchronizing frontend behavior with backend authorization, particularly attaching tokens to API requests, managing user roles in the UI, and preventing unauthorized actions while maintaining a smooth user experience.
 
+Deployement took the most time, it was my first deployment and getting familiar with various platforms took time.
+
 ---
 
 ## 🤖 AI Tool Usage Disclosure
@@ -230,14 +232,9 @@ All core logic, backend routes, algorithms, Redux implementation, and UI compone
 
 ---
 
-## 📧 Submission Details
+- GitHub repository link - https://github.com/Binil15/smart-inventory-forecaster
 
-**Email:** jainkuriakose@arcnetic.com  
-**Subject:** Full Stack Intern Assignment – [Your Name]
-
-Please include:
-- GitHub repository link
-- Live demo links (if deployed)
+- Live demo links - https://smart-inventory-forecaster-frontend.vercel.app/
 
 ---
 ## 👨‍💻 Author
