@@ -45,11 +45,6 @@
   opacity: 0.8;
 }
 
-form {
-  margin: 0;
-  padding: 0;
-}
-
 .login-input {
   width: 100%;
   padding: 10px 14px;
@@ -79,12 +74,6 @@ form {
 
   font-size: 14px;
   cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-.login-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
 }
 
 .login-error {
